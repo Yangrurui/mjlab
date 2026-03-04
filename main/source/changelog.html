@@ -588,6 +588,16 @@ deprecated in a future version.</p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">upload_model</span></code> option to <code class="docutils literal notranslate"><span class="pre">RslRlBaseRunnerCfg</span></code> to control W&amp;B model
 file uploads (<code class="docutils literal notranslate"><span class="pre">.pt</span></code> and <code class="docutils literal notranslate"><span class="pre">.onnx</span></code>) while keeping metric logging enabled
 (<a class="reference external" href="https://github.com/mujocolab/mjlab/pull/654">#654</a>).</p></li>
+<li><p>Added a camera sensor demo script (<code class="docutils literal notranslate"><span class="pre">scripts/demos/camera_sensor.py</span></code>) that
+visualizes live RGB and depth streams from <code class="docutils literal notranslate"><span class="pre">CameraSensor</span></code>.</p></li>
+<li><p>Added a Unitree G1 camera rendering demo (<code class="docutils literal notranslate"><span class="pre">scripts/demos/g1_camera_sensor.py</span></code>)
+for visualizing robot RGB/depth outputs in both GUI and headless workflows.</p></li>
+<li><p>Added a Viser-based Unitree G1 camera demo (<code class="docutils literal notranslate"><span class="pre">scripts/demos/g1_camera_viser.py</span></code>)
+that shows live camera feeds and frustums in the web UI.</p></li>
+<li><p>Updated <code class="docutils literal notranslate"><span class="pre">scripts/demos/g1_camera_viser.py</span></code> to use a generated staircase
+terrain with a central platform instead of manual box steps.</p></li>
+<li><p>Tuned <code class="docutils literal notranslate"><span class="pre">scripts/demos/g1_camera_viser.py</span></code> staircase defaults with a smaller
+center platform and steeper/more pronounced steps.</p></li>
 </ul>
 </section>
 <section id="changed">
