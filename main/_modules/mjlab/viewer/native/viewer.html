@@ -56,7 +56,7 @@
     <link rel="search" title="Search" href="../../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Mar 02, 2026"/>
+    <meta name="docbuild:last-update" content="Mar 04, 2026"/>
   </head>
   
   
@@ -499,6 +499,7 @@ document.write(`
     <span class="bp">self</span><span class="o">.</span><span class="n">_show_debug_vis</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_show_all_envs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_plot_cfg</span> <span class="o">=</span> <span class="n">plot_cfg</span> <span class="ow">or</span> <span class="n">PlotCfg</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_figures_dirty</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">env_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">env_idx</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_mj_lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span></div>
@@ -574,8 +575,15 @@ document.write(`
       <span class="bp">self</span><span class="o">.</span><span class="n">_sync_model_fields</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">env_idx</span><span class="p">)</span>
       <span class="n">mujoco</span><span class="o">.</span><span class="n">mj_forward</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mjm</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mjd</span><span class="p">)</span>
 
+      <span class="c1"># The viewer window can close at any time. Re-check before set_texts</span>
+      <span class="c1"># / set_figures since those use spin-wait sync with the render loop.</span>
+      <span class="k">if</span> <span class="ow">not</span> <span class="n">v</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
+        <span class="k">return</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">_set_status_overlay</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+      <span class="k">if</span> <span class="ow">not</span> <span class="n">v</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
+        <span class="k">return</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">_update_reward_figures</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
       <span class="bp">self</span><span class="o">.</span><span class="n">_update_debug_visualizers</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">_render_other_env_geoms</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="n">sim_data</span><span class="p">)</span>
 
@@ -605,7 +613,11 @@ document.write(`
 
   <span class="k">def</span><span class="w"> </span><span class="nf">_update_reward_figures</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">viewer</span><span class="p">:</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">viewer</span><span class="o">.</span><span class="n">Handle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_show_plots</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_term_names</span><span class="p">:</span>
-      <span class="n">viewer</span><span class="o">.</span><span class="n">set_figures</span><span class="p">([])</span>
+      <span class="c1"># Only send an empty set_figures when transitioning from shown to hidden, to</span>
+      <span class="c1"># avoid a spin-wait round trip every frame.</span>
+      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_figures_dirty</span><span class="p">:</span>
+        <span class="n">viewer</span><span class="o">.</span><span class="n">set_figures</span><span class="p">([])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_figures_dirty</span> <span class="o">=</span> <span class="kc">False</span>
       <span class="k">return</span>
 
     <span class="n">terms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
@@ -627,6 +639,7 @@ document.write(`
       <span class="p">)</span>
     <span class="p">]</span>
     <span class="n">viewer</span><span class="o">.</span><span class="n">set_figures</span><span class="p">(</span><span class="n">viewport_figs</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_figures_dirty</span> <span class="o">=</span> <span class="kc">True</span>
 
   <span class="k">def</span><span class="w"> </span><span class="nf">_update_debug_visualizers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">viewer</span><span class="p">:</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">viewer</span><span class="o">.</span><span class="n">Handle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">viewer</span><span class="o">.</span><span class="n">user_scn</span><span class="o">.</span><span class="n">ngeom</span> <span class="o">=</span> <span class="mi">0</span>
@@ -730,11 +743,7 @@ document.write(`
     <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">viewer</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">viewer</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">v</span><span class="p">:</span>
-      <span class="k">try</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
-          <span class="n">v</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-      <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[WARN] Error while closing viewer: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">VerbosityLevel</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+      <span class="n">v</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;[INFO] MuJoCo viewer closed&quot;</span><span class="p">,</span> <span class="n">VerbosityLevel</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span></div>
 
 
@@ -835,11 +844,11 @@ document.write(`
     <span class="bp">self</span><span class="o">.</span><span class="n">viewer</span><span class="o">.</span><span class="n">opt</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">mjtFrame</span><span class="o">.</span><span class="n">mjFRAME_WORLD</span><span class="o">.</span><span class="n">value</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="p">,</span> <span class="s2">&quot;origin_type&quot;</span><span class="p">):</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">_set_camera_world</span><span class="p">()</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_set_camera_auto_track</span><span class="p">()</span>
       <span class="k">return</span>
 
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">origin_type</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">OriginType</span><span class="o">.</span><span class="n">WORLD</span><span class="p">:</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">_set_camera_world</span><span class="p">()</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_set_camera_auto_track</span><span class="p">()</span>
     <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">origin_type</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">OriginType</span><span class="o">.</span><span class="n">ASSET_ROOT</span><span class="p">:</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">_set_camera_asset_root</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>  <span class="c1"># ASSET_BODY</span>
@@ -851,6 +860,21 @@ document.write(`
     <span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">viewer</span><span class="o">.</span><span class="n">cam</span><span class="o">.</span><span class="n">azimuth</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="p">,</span> <span class="s2">&quot;azimuth&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">viewer</span><span class="o">.</span><span class="n">cam</span><span class="o">.</span><span class="n">azimuth</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">viewer</span><span class="o">.</span><span class="n">cam</span><span class="o">.</span><span class="n">distance</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="p">,</span> <span class="s2">&quot;distance&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">viewer</span><span class="o">.</span><span class="n">cam</span><span class="o">.</span><span class="n">distance</span><span class="p">)</span>
+
+  <span class="k">def</span><span class="w"> </span><span class="nf">_set_camera_auto_track</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Track first non-fixed body; fall back to free camera if none exists.&quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">viewer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">mjm</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">body_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mjm</span><span class="o">.</span><span class="n">nbody</span><span class="p">):</span>
+      <span class="n">is_weld</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mjm</span><span class="o">.</span><span class="n">body_weldid</span><span class="p">[</span><span class="n">body_id</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="n">root_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mjm</span><span class="o">.</span><span class="n">body_rootid</span><span class="p">[</span><span class="n">body_id</span><span class="p">]</span>
+      <span class="n">root_is_mocap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mjm</span><span class="o">.</span><span class="n">body_mocapid</span><span class="p">[</span><span class="n">root_id</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+      <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">is_weld</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">root_is_mocap</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">viewer</span><span class="o">.</span><span class="n">cam</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">mjtCamera</span><span class="o">.</span><span class="n">mjCAMERA_TRACKING</span><span class="o">.</span><span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">viewer</span><span class="o">.</span><span class="n">cam</span><span class="o">.</span><span class="n">trackbodyid</span> <span class="o">=</span> <span class="n">body_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">viewer</span><span class="o">.</span><span class="n">cam</span><span class="o">.</span><span class="n">fixedcamid</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">return</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_set_camera_world</span><span class="p">()</span>
 
   <span class="k">def</span><span class="w"> </span><span class="nf">_set_camera_world</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Configure free camera in world frame.&quot;&quot;&quot;</span>
@@ -1078,7 +1102,7 @@ By The mjlab Developers
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Mar 02, 2026.
+  Last updated on Mar 04, 2026.
   <br/>
 </p>
   </div>
