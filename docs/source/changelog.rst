@@ -112,6 +112,16 @@ Added
 - Added ``upload_model`` option to ``RslRlBaseRunnerCfg`` to control W&B model
   file uploads (``.pt`` and ``.onnx``) while keeping metric logging enabled
   (`#654 <https://github.com/mujocolab/mjlab/pull/654>`_).
+- Added a camera sensor demo script (``scripts/demos/camera_sensor.py``) that
+  visualizes live RGB and depth streams from ``CameraSensor``.
+- Added a Unitree G1 camera rendering demo (``scripts/demos/g1_camera_sensor.py``)
+  for visualizing robot RGB/depth outputs in both GUI and headless workflows.
+- Added a Viser-based Unitree G1 camera demo (``scripts/demos/g1_camera_viser.py``)
+  that shows live camera feeds and frustums in the web UI.
+- Updated ``scripts/demos/g1_camera_viser.py`` to use a generated staircase
+  terrain with a central platform instead of manual box steps.
+- Tuned ``scripts/demos/g1_camera_viser.py`` staircase defaults with a smaller
+  center platform and steeper/more pronounced steps.
 
 Changed
 ^^^^^^^
