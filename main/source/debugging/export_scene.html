@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>mjlab.tasks &#8212; mjlab Documentation</title>
+    <title>Export Scene &#8212; mjlab Documentation</title>
   
   
   
@@ -51,12 +51,12 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'source/api/tasks';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'source/debugging/export_scene';</script>
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Why mjlab?" href="../motivation.html" />
-    <link rel="prev" title="mjlab.viewer" href="viewer.html" />
+    <link rel="next" title="API Reference" href="../api/index.html" />
+    <link rel="prev" title="NaN Guard" href="nan_guard.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
     <meta name="docbuild:last-update" content="Mar 09, 2026"/>
@@ -169,7 +169,7 @@
 <div class="sidebar-version-switcher">
   <label class="sidebar-version-label" for="version-select">Version</label>
   <select id="version-select" class="sidebar-version-select" onchange="location = this.value;">
-    <option value="tasks.html" selected>main</option>
+    <option value="export_scene.html" selected>main</option>
   </select>
 </div>
 </div>
@@ -211,28 +211,28 @@
 <li class="toctree-l1"><a class="reference internal" href="../metrics.html">Metrics</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Training &amp; Debugging</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../training/rsl_rl.html">Training with RSL-RL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../viewers.html">Viewers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../training/distributed_training.html">Distributed Training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../training/cloud.html">Cloud Training</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../debugging/nan_guard.html">NaN Guard</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../debugging/export_scene.html">Export Scene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nan_guard.html">NaN Guard</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Export Scene</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">API Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="envs.html">mjlab.envs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scene.html">mjlab.scene</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sim.html">mjlab.sim</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity.html">mjlab.entity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="actuator.html">mjlab.actuator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sensor.html">mjlab.sensor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="managers.html">mjlab.managers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="terrains.html">mjlab.terrains</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rl.html">mjlab.rl</a></li>
-<li class="toctree-l2"><a class="reference internal" href="viewer.html">mjlab.viewer</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">mjlab.tasks</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/envs.html">mjlab.envs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/scene.html">mjlab.scene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/sim.html">mjlab.sim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/entity.html">mjlab.entity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/actuator.html">mjlab.actuator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/sensor.html">mjlab.sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/managers.html">mjlab.managers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/terrains.html">mjlab.terrains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/rl.html">mjlab.rl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/viewer.html">mjlab.viewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/tasks.html">mjlab.tasks</a></li>
 </ul>
 </details></li>
 </ul>
@@ -314,7 +314,7 @@
       
       
       
-      <li><a href="https://github.com/mujocolab/mjlab/edit/main/docs/source/api/tasks.rst" target="_blank"
+      <li><a href="https://github.com/mujocolab/mjlab/edit/main/docs/source/debugging/export_scene.rst" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -331,7 +331,7 @@
       
       
       
-      <li><a href="https://github.com/mujocolab/mjlab/issues/new?title=Issue%20on%20page%20%2Fsource/api/tasks.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/mujocolab/mjlab/issues/new?title=Issue%20on%20page%20%2Fsource/debugging/export_scene.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -361,7 +361,7 @@
       
       
       
-      <li><a href="../../_sources/source/api/tasks.rst" target="_blank"
+      <li><a href="../../_sources/source/debugging/export_scene.rst" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -445,7 +445,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>mjlab.tasks</h1>
+    <h1>Export Scene</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -455,11 +455,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mjlab.tasks.registry.register_mjlab_task"><code class="docutils literal notranslate"><span class="pre">register_mjlab_task()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mjlab.tasks.registry.list_tasks"><code class="docutils literal notranslate"><span class="pre">list_tasks()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mjlab.tasks.registry.load_env_cfg"><code class="docutils literal notranslate"><span class="pre">load_env_cfg()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mjlab.tasks.registry.load_rl_cfg"><code class="docutils literal notranslate"><span class="pre">load_rl_cfg()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mjlab.tasks.registry.load_runner_cls"><code class="docutils literal notranslate"><span class="pre">load_runner_cls()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick start</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#target-resolution">Target resolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#options">Options</a></li>
 </ul>
             </nav>
         </div>
@@ -471,66 +469,50 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="module-mjlab.tasks.registry">
-<span id="mjlab-tasks"></span><h1>mjlab.tasks<a class="headerlink" href="#module-mjlab.tasks.registry" title="Link to this heading">#</a></h1>
-<p>Task registry system for managing environment registration and creation.</p>
-<p class="rubric">Functions</p>
-<table class="hlist"><tr><td><ul class="simple">
-<li><p><a class="reference internal" href="#mjlab.tasks.registry.register_mjlab_task" title="mjlab.tasks.registry.register_mjlab_task"><code class="xref py py-func docutils literal notranslate"><span class="pre">register_mjlab_task()</span></code></a></p></li>
-<li><p><a class="reference internal" href="#mjlab.tasks.registry.list_tasks" title="mjlab.tasks.registry.list_tasks"><code class="xref py py-func docutils literal notranslate"><span class="pre">list_tasks()</span></code></a></p></li>
-</ul>
-</td><td><ul class="simple">
-<li><p><a class="reference internal" href="#mjlab.tasks.registry.load_env_cfg" title="mjlab.tasks.registry.load_env_cfg"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_env_cfg()</span></code></a></p></li>
-<li><p><a class="reference internal" href="#mjlab.tasks.registry.load_rl_cfg" title="mjlab.tasks.registry.load_rl_cfg"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_rl_cfg()</span></code></a></p></li>
-</ul>
-</td><td><ul class="simple">
-<li><p><a class="reference internal" href="#mjlab.tasks.registry.load_runner_cls" title="mjlab.tasks.registry.load_runner_cls"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_runner_cls()</span></code></a></p></li>
-</ul>
-</td></tr></table>
-<dl class="py function">
-<dt class="sig sig-object py" id="mjlab.tasks.registry.register_mjlab_task">
-<span class="sig-prename descclassname"><span class="pre">mjlab.tasks.registry.</span></span><span class="sig-name descname"><span class="pre">register_mjlab_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="envs.html#mjlab.envs.ManagerBasedRlEnvCfg" title="mjlab.envs.manager_based_rl_env.ManagerBasedRlEnvCfg"><span class="pre">ManagerBasedRlEnvCfg</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">play_env_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="envs.html#mjlab.envs.ManagerBasedRlEnvCfg" title="mjlab.envs.manager_based_rl_env.ManagerBasedRlEnvCfg"><span class="pre">ManagerBasedRlEnvCfg</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rl_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="rl.html#mjlab.rl.RslRlBaseRunnerCfg" title="mjlab.rl.config.RslRlBaseRunnerCfg"><span class="pre">RslRlBaseRunnerCfg</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">runner_cls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/mjlab/tasks/registry.html#register_mjlab_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mjlab.tasks.registry.register_mjlab_task" title="Link to this definition">#</a></dt>
-<dd><p>Register an environment task.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>task_id</strong> – Unique task identifier (e.g., “Mjlab-Velocity-Rough-Unitree-Go1”).</p></li>
-<li><p><strong>env_cfg</strong> – Environment configuration used for training.</p></li>
-<li><p><strong>play_env_cfg</strong> – Environment configuration in “play” mode.</p></li>
-<li><p><strong>rl_cfg</strong> – RL runner configuration.</p></li>
-<li><p><strong>runner_cls</strong> – Optional custom runner class. If None, uses OnPolicyRunner.</p></li>
-</ul>
+  <section id="export-scene">
+<span id="id1"></span><h1>Export Scene<a class="headerlink" href="#export-scene" title="Link to this heading">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">export-scene</span></code> script writes a complete scene (XML and mesh assets) to a
+directory for inspection, sharing, or loading in standalone MuJoCo.</p>
+<section id="quick-start">
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export a built-in entity by alias.</span>
+uv<span class="w"> </span>run<span class="w"> </span>export-scene<span class="w"> </span>g1<span class="w"> </span>--output-dir<span class="w"> </span>/tmp/g1
+
+<span class="c1"># Export a registered task scene.</span>
+uv<span class="w"> </span>run<span class="w"> </span>export-scene<span class="w"> </span>Mjlab-Velocity-Flat-Unitree-Go1<span class="w"> </span>--output-dir<span class="w"> </span>/tmp/task
+
+<span class="c1"># Export as a zip archive.</span>
+uv<span class="w"> </span>run<span class="w"> </span>export-scene<span class="w"> </span>yam<span class="w"> </span>--output-dir<span class="w"> </span>/tmp/yam<span class="w"> </span>--zip<span class="w"> </span>True
+
+<span class="c1"># Export a custom entity via import path.</span>
+uv<span class="w"> </span>run<span class="w"> </span>export-scene<span class="w"> </span>my_pkg.robots:get_my_robot_cfg<span class="w"> </span>--output-dir<span class="w"> </span>/tmp/custom
+</pre></div>
+</div>
+<p>The output directory contains a <code class="docutils literal notranslate"><span class="pre">scene.xml</span></code> and an <code class="docutils literal notranslate"><span class="pre">assets/</span></code> subdirectory
+with all referenced mesh files. The XML can be loaded directly with
+<code class="docutils literal notranslate"><span class="pre">mujoco.MjModel.from_xml_path()</span></code> or dropped into the
+<a class="reference external" href="https://mujoco.readthedocs.io/en/stable/programming/samples.html#sasimulate">simulate viewer</a>.</p>
+</section>
+<section id="target-resolution">
+<h2>Target resolution<a class="headerlink" href="#target-resolution" title="Link to this heading">#</a></h2>
+<p>The positional <code class="docutils literal notranslate"><span class="pre">target</span></code> argument is resolved in order:</p>
+<ol class="arabic simple">
+<li><p><strong>Task ID</strong>: checked against the task registry (<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">mjlab.tasks</span></code>).</p></li>
+<li><p><strong>Entity alias</strong>: one of the built-in shorthands (<code class="docutils literal notranslate"><span class="pre">g1</span></code>, <code class="docutils literal notranslate"><span class="pre">go1</span></code>, <code class="docutils literal notranslate"><span class="pre">yam</span></code>).</p></li>
+<li><p><strong>Import path</strong>: a <code class="docutils literal notranslate"><span class="pre">module:attribute</span></code> string pointing to any callable
+that returns an <code class="docutils literal notranslate"><span class="pre">EntityCfg</span></code>.</p></li>
+</ol>
+<p>If none match, the script prints available task IDs and aliases.</p>
+</section>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--output-dir</span> <span class="pre">DIR</span></code> <em>(default: “export”)</em></dt><dd><p>Destination directory. Cleaned before each export to prevent stale assets.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">--zip</span> <span class="pre">True</span></code> <em>(default: False)</em></dt><dd><p>Compress the output into a <code class="docutils literal notranslate"><span class="pre">.zip</span></code> archive and remove the directory.</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mjlab.tasks.registry.list_tasks">
-<span class="sig-prename descclassname"><span class="pre">mjlab.tasks.registry.</span></span><span class="sig-name descname"><span class="pre">list_tasks</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/mjlab/tasks/registry.html#list_tasks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mjlab.tasks.registry.list_tasks" title="Link to this definition">#</a></dt>
-<dd><p>List all registered task IDs.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mjlab.tasks.registry.load_env_cfg">
-<span class="sig-prename descclassname"><span class="pre">mjlab.tasks.registry.</span></span><span class="sig-name descname"><span class="pre">load_env_cfg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">play</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="envs.html#mjlab.envs.ManagerBasedRlEnvCfg" title="mjlab.envs.manager_based_rl_env.ManagerBasedRlEnvCfg"><span class="pre">ManagerBasedRlEnvCfg</span></a></span></span><a class="reference internal" href="../../_modules/mjlab/tasks/registry.html#load_env_cfg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mjlab.tasks.registry.load_env_cfg" title="Link to this definition">#</a></dt>
-<dd><p>Load environment configuration for a task.</p>
-<p>Returns a deep copy to prevent mutation of the registered config.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mjlab.tasks.registry.load_rl_cfg">
-<span class="sig-prename descclassname"><span class="pre">mjlab.tasks.registry.</span></span><span class="sig-name descname"><span class="pre">load_rl_cfg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="rl.html#mjlab.rl.RslRlBaseRunnerCfg" title="mjlab.rl.config.RslRlBaseRunnerCfg"><span class="pre">RslRlBaseRunnerCfg</span></a></span></span><a class="reference internal" href="../../_modules/mjlab/tasks/registry.html#load_rl_cfg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mjlab.tasks.registry.load_rl_cfg" title="Link to this definition">#</a></dt>
-<dd><p>Load RL configuration for a task.</p>
-<p>Returns a deep copy to prevent mutation of the registered config.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mjlab.tasks.registry.load_runner_cls">
-<span class="sig-prename descclassname"><span class="pre">mjlab.tasks.registry.</span></span><span class="sig-name descname"><span class="pre">load_runner_cls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/mjlab/tasks/registry.html#load_runner_cls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mjlab.tasks.registry.load_runner_cls" title="Link to this definition">#</a></dt>
-<dd><p>Load the runner class for a task.</p>
-<p>If None, the default OnPolicyRunner will be used.</p>
-</dd></dl>
-
+</section>
 </section>
 
 
@@ -545,20 +527,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="viewer.html"
+       href="nan_guard.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">mjlab.viewer</p>
+        <p class="prev-next-title">NaN Guard</p>
       </div>
     </a>
     <a class="right-next"
-       href="../motivation.html"
+       href="../api/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Why mjlab?</p>
+        <p class="prev-next-title">API Reference</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -578,11 +560,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mjlab.tasks.registry.register_mjlab_task"><code class="docutils literal notranslate"><span class="pre">register_mjlab_task()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mjlab.tasks.registry.list_tasks"><code class="docutils literal notranslate"><span class="pre">list_tasks()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mjlab.tasks.registry.load_env_cfg"><code class="docutils literal notranslate"><span class="pre">load_env_cfg()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mjlab.tasks.registry.load_rl_cfg"><code class="docutils literal notranslate"><span class="pre">load_rl_cfg()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mjlab.tasks.registry.load_runner_cls"><code class="docutils literal notranslate"><span class="pre">load_runner_cls()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick start</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#target-resolution">Target resolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#options">Options</a></li>
 </ul>
   </nav></div>
 
