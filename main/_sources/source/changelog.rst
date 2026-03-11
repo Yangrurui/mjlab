@@ -8,15 +8,21 @@ Upcoming version (not yet released)
 Added
 ^^^^^
 
+- Added ``margin``, ``gap``, and ``solmix`` fields to ``CollisionCfg``
+  for per geom contact parameter configuration (:issue:`766`).
 - Added ``DelayedBuiltinActuatorGroup`` that fuses delayed builtin actuators
   sharing the same delay configuration into a single buffer operation.
 - NaN guard now captures mocap body poses (``mocap_pos``, ``mocap_quat``)
   when the model has mocap bodies, enabling full state reconstruction in
   the dump viewer for fixed-base entities.
+- Implemented ``ActionTermCfg.clip`` for clamping processed actions after
+  scale and offset (:issue:`771`).
 
 Changed
 ^^^^^^^
 
+- Removed deprecated ``TerrainImporter`` and ``TerrainImporterCfg`` aliases.
+  Use ``TerrainEntity`` and ``TerrainEntityCfg`` instead (:issue:`667`).
 - ``Entity.clear_state()`` is deprecated. Use ``Entity.reset()`` instead.
   ``clear_state`` only zeroed actuator targets without resetting actuator
   internal state (e.g. delay buffers), which could cause stale commands
@@ -32,6 +38,13 @@ Fixed
 - Set terrain geom mass to zero so that the static terrain body does not
   inflate ``stat.meanmass``, which made force arrow visualization invisible
   on rough terrain (:issue:`734`, :issue:`537`).
+- Native viewer now syncs ``qpos0`` when domain randomized, fixing incorrect
+  body positions after ``dr.joint_default_pos`` randomization
+  (:issue:`760`).
+- ``command_manager.compute()`` is now called during ``reset()`` so that
+  derived command state (e.g. relative body positions in tracking
+  environments) is populated before the first observation is returned
+  (:issue:`761`).
 
 Version 1.2.0 (March 6, 2026)
 -----------------------------
