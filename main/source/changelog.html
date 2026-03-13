@@ -58,7 +58,7 @@
     <link rel="prev" title="Research" href="research.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="Mar 11, 2026"/>
+    <meta name="docbuild:last-update" content="Mar 13, 2026"/>
   </head>
   
   
@@ -177,7 +177,10 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tutorials.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/cartpole.html">Cartpole: Building Your First Environment</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Concepts</span></p>
@@ -211,7 +214,10 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Training &amp; Debugging</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="training/rsl_rl.html">Training with RSL-RL</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="training/rsl_rl.html">Training with RSL-RL</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="training/motion_imitation.html">Motion Imitation</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="viewers.html">Viewers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="training/distributed_training.html">Distributed Training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="training/cloud.html">Cloud Training</a></li>
@@ -497,6 +503,13 @@ document.write(`
 <section id="added">
 <h3>Added<a class="headerlink" href="#added" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p>Added cartpole balance and swingup tasks (<code class="docutils literal notranslate"><span class="pre">Mjlab-Cartpole-Balance</span></code> and
+<code class="docutils literal notranslate"><span class="pre">Mjlab-Cartpole-Swingup</span></code>) with a <a class="reference internal" href="tutorials/cartpole.html#tutorial-cartpole"><span class="std std-ref">tutorial</span></a>
+that walks through building an environment from scratch.</p></li>
+<li><p>Added <a class="reference internal" href="training/motion_imitation.html#motion-imitation"><span class="std std-ref">motion imitation</span></a> documentation with
+preprocessing instructions. The README now links here instead of the
+BeyondMimic repository, which produced incompatible NPZ files when used
+with mjlab (<a class="extlink-issue reference external" href="https://github.com/mujocolab/mjlab/issues/777">#777</a>).</p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">margin</span></code>, <code class="docutils literal notranslate"><span class="pre">gap</span></code>, and <code class="docutils literal notranslate"><span class="pre">solmix</span></code> fields to <code class="docutils literal notranslate"><span class="pre">CollisionCfg</span></code>
 for per geom contact parameter configuration (<a class="extlink-issue reference external" href="https://github.com/mujocolab/mjlab/issues/766">#766</a>).</p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">DelayedBuiltinActuatorGroup</span></code> that fuses delayed builtin actuators
@@ -506,22 +519,52 @@ when the model has mocap bodies, enabling full state reconstruction in
 the dump viewer for fixed-base entities.</p></li>
 <li><p>Implemented <code class="docutils literal notranslate"><span class="pre">ActionTermCfg.clip</span></code> for clamping processed actions after
 scale and offset (<a class="extlink-issue reference external" href="https://github.com/mujocolab/mjlab/issues/771">#771</a>).</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">qfrc_actuator</span></code> and <code class="docutils literal notranslate"><span class="pre">qfrc_external</span></code> generalized force accessors
+to <code class="docutils literal notranslate"><span class="pre">EntityData</span></code>. <code class="docutils literal notranslate"><span class="pre">qfrc_actuator</span></code> gives actuator forces in joint space
+(projected through the transmission). <code class="docutils literal notranslate"><span class="pre">qfrc_external</span></code> recovers the
+generalized force from body external wrenches (<code class="docutils literal notranslate"><span class="pre">xfrc_applied</span></code>)
+(<a class="extlink-issue reference external" href="https://github.com/mujocolab/mjlab/issues/776">#776</a>).</p></li>
 </ul>
 </section>
 <section id="changed">
 <h3>Changed<a class="headerlink" href="#changed" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BoxSteppingStonesTerrainCfg</span></code> stone size now decreases with difficulty,
+interpolating from the large end of <code class="docutils literal notranslate"><span class="pre">stone_size_range</span></code> at difficulty 0
+to the small end at difficulty 1 (<a class="extlink-issue reference external" href="https://github.com/mujocolab/mjlab/issues/785">#785</a>).</p></li>
 <li><p>Removed deprecated <code class="docutils literal notranslate"><span class="pre">TerrainImporter</span></code> and <code class="docutils literal notranslate"><span class="pre">TerrainImporterCfg</span></code> aliases.
 Use <code class="docutils literal notranslate"><span class="pre">TerrainEntity</span></code> and <code class="docutils literal notranslate"><span class="pre">TerrainEntityCfg</span></code> instead (<a class="extlink-issue reference external" href="https://github.com/mujocolab/mjlab/issues/667">#667</a>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Entity.clear_state()</span></code> is deprecated. Use <code class="docutils literal notranslate"><span class="pre">Entity.reset()</span></code> instead.
 <code class="docutils literal notranslate"><span class="pre">clear_state</span></code> only zeroed actuator targets without resetting actuator
 internal state (e.g. delay buffers), which could cause stale commands
 after teleporting the robot to a new pose.</p></li>
+<li><p>Removed <code class="docutils literal notranslate"><span class="pre">EntityData.generalized_force</span></code>. The property was bugged (indexed
+free joint DOFs instead of articulated DOFs) and the name was ambiguous.
+Use <code class="docutils literal notranslate"><span class="pre">qfrc_actuator</span></code> or <code class="docutils literal notranslate"><span class="pre">qfrc_external</span></code> instead (<a class="extlink-issue reference external" href="https://github.com/mujocolab/mjlab/issues/776">#776</a>).</p></li>
 </ul>
 </section>
 <section id="fixed">
 <h3>Fixed<a class="headerlink" href="#fixed" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">electrical_power_cost</span></code> now uses <code class="docutils literal notranslate"><span class="pre">qfrc_actuator</span></code> (joint space) instead
+of <code class="docutils literal notranslate"><span class="pre">actuator_force</span></code> (actuation space) for mechanical power computation.
+Previously the reward was incorrect for actuators with gear ratios other
+than 1 (<a class="extlink-issue reference external" href="https://github.com/mujocolab/mjlab/issues/776">#776</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create_velocity_actuator</span></code> no longer sets <code class="docutils literal notranslate"><span class="pre">ctrllimited=True</span></code> with
+<code class="docutils literal notranslate"><span class="pre">inheritrange=1.0</span></code>. This caused a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> for continuous joints
+(e.g. wheels) that have no position range defined (<a class="extlink-issue reference external" href="https://github.com/mujocolab/mjlab/issues/787">#787</a>).</p></li>
+<li><p>Joint limits for unlimited joints are now set to [-inf, inf] instead of
+[0, 0]. Previously the zero range caused incorrect clamping for entities
+with unlimited hinge or slide joints.</p></li>
+<li><p>Contact force visualization now copies <code class="docutils literal notranslate"><span class="pre">ctrl</span></code> into the CPU <code class="docutils literal notranslate"><span class="pre">MjData</span></code>
+before calling <code class="docutils literal notranslate"><span class="pre">mj_forward</span></code>. Actuators that compute torques in Python
+(<code class="docutils literal notranslate"><span class="pre">DcMotorActuator</span></code>, <code class="docutils literal notranslate"><span class="pre">IdealPdActuator</span></code>) previously showed incorrect
+contact forces because the viewer ran with <code class="docutils literal notranslate"><span class="pre">ctrl=0</span></code>
+(<a class="extlink-issue reference external" href="https://github.com/mujocolab/mjlab/issues/786">#786</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BoxSteppingStonesTerrainCfg</span></code> no longer creates a large gap around the
+platform. Stones are now only skipped when their center falls inside the
+platform; edges that extend under the platform are allowed since the
+platform covers them (<a class="extlink-issue reference external" href="https://github.com/mujocolab/mjlab/issues/785">#785</a>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dr.pseudo_inertia</span></code> no longer loads cuSOLVER, eliminating ~4 GB of
 persistent GPU memory overhead. Cholesky and eigendecomposition are now
 computed analytically for the small matrices involved (4x4 and 3x3)
@@ -536,6 +579,11 @@ body positions after <code class="docutils literal notranslate"><span class="pre
 derived command state (e.g. relative body positions in tracking
 environments) is populated before the first observation is returned
 (<a class="extlink-issue reference external" href="https://github.com/mujocolab/mjlab/issues/761">#761</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RayCastSensor</span></code> with <code class="docutils literal notranslate"><span class="pre">ray_alignment=&quot;yaw&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;world&quot;</span></code> now correctly
+aligns the frame offset when attached to a site or geom with a local offset
+from its parent body. Previously only ray directions and pattern offsets were
+aligned, causing the frame position to swing with body pitch/roll
+(<a class="extlink-issue reference external" href="https://github.com/mujocolab/mjlab/issues/775">#775</a>).</p></li>
 </ul>
 </section>
 </section>
@@ -915,7 +963,7 @@ By The mjlab Developers
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Mar 11, 2026.
+  Last updated on Mar 13, 2026.
   <br/>
 </p>
   </div>
